@@ -1,0 +1,38 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: educontrol
+      POSTGRES_USER: educontrol
+      POSTGRES_PASSWORD: educontrol_dev
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U educontrol -d educontrol"]
+      interval: 3s
+      retries: 20
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://educontrol:educontrol_dev@db:5432/educontrol
+      SECRET_KEY: ${SECRET_KEY:-dev-change-this-before-deployment}
+      DEMO_PASSWORD: ${DEMO_PASSWORD:-Demo@12345}
+      COOKIE_SECURE: 'false'
+      FLASK_DEBUG: '0'
+      PHOTO_DIR: /app/student_photos
+    volumes:
+      - student_photos:/app/student_photos
+    ports:
+      - "5000:5000"
+    depends_on:
+      db:
+        condition: service_healthy
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+volumes:
+  student_photos:
+  pgdata:
