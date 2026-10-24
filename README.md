@@ -1,11 +1,3 @@
-## Atualização v0.3 — perfis e interface
-
-- **Secretaria:** dashboard próprio com matrículas ativas, alunos cadastrados, turmas, transferências recentes, turmas sem professor e atalhos de operação.
-- **Permissões:** o menu apresenta apenas os módulos do perfil; backend mantém autorização obrigatória nas rotas.
-- **Professores em turmas:** endpoint restrito `/api/teachers` para selecionar responsáveis sem expor dados pessoais de outros usuários.
-- **Visual:** redesign com tipografia mais legível, cores sóbrias, foco em tabelas, ações e estados.
-- **Importante:** não foi possível concluir `npm install`/build integrado no ambiente de geração. Execute `docker compose up --build -d` e confira `docker compose logs -f frontend backend` para validar localmente. Não use `docker compose down -v` se deseja preservar dados.
-
 # EduControl — POC de Gestão Acadêmica
 
 Aplicação demonstrativa com **React + TypeScript (Vite)**, **Flask + SQLAlchemy** e **PostgreSQL**. Idioma: português brasileiro. Sem integração com serviços externos.
@@ -174,6 +166,13 @@ Este projeto é uma **POC local**, não um produto pronto para produção. Alter
 ### Atualização
 Substitua os arquivos pelo ZIP v0.2 e rode `docker compose up --build -d`. O modelo do banco não mudou nesta versão; não é necessário executar o seed novamente.
 
+## Atualização v0.3 — perfis e interface
+
+- **Secretaria:** dashboard próprio com matrículas ativas, alunos cadastrados, turmas, transferências recentes, turmas sem professor e atalhos de operação.
+- **Permissões:** o menu apresenta apenas os módulos do perfil; backend mantém autorização obrigatória nas rotas.
+- **Professores em turmas:** endpoint restrito `/api/teachers` para selecionar responsáveis sem expor dados pessoais de outros usuários.
+- **Visual:** redesign com tipografia mais legível, cores sóbrias, foco em tabelas, ações e estados.
+- **Importante:** não foi possível concluir `npm install`/build integrado no ambiente de geração. Execute `docker compose up --build -d` e confira `docker compose logs -f frontend backend` para validar localmente. Não use `docker compose down -v` se deseja preservar dados.
 
 ## Novidades v0.4
 - Dashboard do professor: turmas vinculadas e acesso rápido à chamada (sem alertas de frequência).
