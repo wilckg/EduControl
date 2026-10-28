@@ -112,3 +112,54 @@ body{background:#f7f8fa}
 .faceavatar .student-photo,.faceavatar .student-initials{width:100%;height:100%;border-radius:inherit;object-fit:cover}
 .faceavatar{overflow:hidden}
 .record-module .field textarea{width:100%;min-height:96px}
+
+/* v0.7 – fotografia centralizada no início do formulário */
+.student-photo-form{display:flex;flex-direction:column;align-items:center;gap:11px;margin:0 auto 28px;padding:22px 12px 24px;border-bottom:1px solid #e5eaf1;text-align:center;width:100%}
+.student-photo-form-preview{width:168px;height:168px;border-radius:16px;border:1px solid #d7e0ec;overflow:hidden;background:#f4f7fb;display:flex;align-items:center;justify-content:center}
+.student-photo-form-preview img{width:100%;height:100%;object-fit:cover}.student-photo-form-preview .student-photo.large,.student-photo-form-preview .student-initials.large{width:100%;height:100%;border-radius:0;object-fit:cover}
+.student-photo-placeholder{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:9px;color:#7285a0;font-size:12px}
+.student-photo-upload{position:relative;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;background:#174b95;color:white;padding:10px 16px;border-radius:8px;font-size:13px;font-weight:650}
+.student-photo-upload input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}.student-photo-upload:focus-within{outline:3px solid #8ab5eb;outline-offset:3px}.student-photo-form small{color:#6c7e90}
+.attendance-tools{display:flex;align-items:end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:16px 0}.attendance-tools .field{min-width:220px;flex:1;max-width:400px}.attendance-filter{display:flex;align-items:center;gap:8px;font-size:13px;color:#40536a;padding:11px 0}.attendance-filter input{accent-color:#174b95}.save-status{font-size:12px;font-weight:650;padding:9px 11px;border-radius:7px}.save-status.ok{background:#e8f4ec;color:#206343}.save-status.pending{background:#fff3db;color:#94630c}
+
+/* v0.8 — detalhes acadêmicos da turma */
+.class-overview{margin-top:28px;padding-top:20px;border-top:1px solid #e3e8ee}
+.class-overview-top h3{font-size:19px;margin:0 0 5px;color:#183449}
+.class-overview-top p{margin:0 0 16px;color:#617282;font-size:13px}
+.class-tabbar{display:flex;gap:6px;overflow-x:auto;border-bottom:1px solid #dce4eb;margin-bottom:16px}
+.class-tab{border:0;background:transparent;white-space:nowrap;padding:12px 15px;color:#53687b;cursor:pointer;font-size:13px;font-weight:600;border-bottom:3px solid transparent}
+.class-tab.active{color:#064b88;border-color:#e9ad1c}
+.class-tab:hover{background:#f3f7fa}
+.class-overview-search{max-width:380px;margin-bottom:14px}
+.class-table-wrap{width:100%;overflow-x:auto}
+.class-table-wrap table{width:100%;border-collapse:collapse;text-align:left;font-size:13px}
+.class-table-wrap th{font-size:12px;color:#516677;background:#f6f8fa;font-weight:600}
+.class-table-wrap td,.class-table-wrap th{border-bottom:1px solid #e8edf1;padding:12px 10px;vertical-align:middle}
+.class-state{padding:4px 9px;border-radius:20px;background:#edf2f6;color:#354b5a;font-size:12px}
+.class-history{border:1px solid #e1e8ed;border-radius:10px;padding:14px 16px;margin-bottom:10px;background:#fff}
+.class-history-head{display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.class-history-head small,.class-history>small{color:#657788}
+.class-history p{margin:9px 0;line-height:1.5;white-space:pre-wrap}
+.class-overview-loading{padding:18px;color:#617282}
+@media(max-width:720px){.class-tab{padding:11px 10px}.class-overview-top h3{font-size:17px}}
+
+/* v0.9 — Ficha acadêmica individual */
+.academic-profile{margin-top:24px;padding-top:24px;border-top:1px solid var(--border,#e2e8f0)}
+.academic-top,.academic-enrollment-heading{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+.academic-top h3{margin:5px 0}.academic-top p{margin:0;color:var(--muted,#64748b);font-size:14px}
+.academic-count{font-size:12px;color:#315c8b;padding:6px 10px;border-radius:20px;background:#eff6ff;white-space:nowrap}
+.academic-overview{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:22px 0}
+.academic-overview>div{background:#f7f9fb;padding:16px;border:1px solid #e8edf2;border-radius:10px}
+.academic-overview small,.academic-overview strong{display:block}.academic-overview small{color:#64748b}.academic-overview strong{font-size:25px;margin-top:5px;color:#172b4d}
+.academic-tabs{display:flex;flex-wrap:wrap;gap:8px;border-bottom:1px solid #e2e8f0;padding-bottom:10px}
+.academic-tabs button{border:0;border-radius:8px;background:transparent;padding:10px 13px;color:#526274;cursor:pointer}
+.academic-tabs button.active{background:#e9f1fb;color:#153b66;font-weight:700}
+.academic-tabs button span{opacity:.7;margin-left:5px}.academic-search{margin:16px 0;max-width:460px}
+.academic-enrollments,.academic-entries{display:grid;gap:13px}
+.academic-enrollment,.academic-entries article{border:1px solid #e5eaf0;border-radius:10px;padding:16px}
+.academic-enrollment-heading small,.academic-entries small{display:block;margin-top:5px;color:#64748b}
+.academic-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:16px 0}
+.academic-metrics span{font-size:12px;color:#63748a}.academic-metrics b{display:block;color:#192c43;font-size:15px;margin-top:4px}
+.academic-progress{height:6px;background:#e9edf2;border-radius:50px;overflow:hidden;margin-bottom:10px}.academic-progress span{display:block;height:100%;background:#2874bc;border-radius:50px}
+.academic-enrollment>small{color:#68768a}.academic-entries article p{margin-bottom:0;white-space:pre-wrap}
+@media(max-width:740px){.academic-overview{grid-template-columns:1fr 1fr}.academic-metrics{grid-template-columns:1fr 1fr}.academic-top{flex-direction:column}}

@@ -209,3 +209,21 @@ docker compose exec backend flask --app app init-db
 O comando `init-db` adiciona a coluna `student.school` quando ainda não existe. Não execute `down -v`, pois remove volumes.
 
 **Atenção:** a POC ainda necessita de testes integrados, backups e endurecimento de segurança antes de receber dados reais de alunos.
+
+
+## EduControl v0.8 — Visão integrada de turmas
+
+Em **Turmas → Ver**, as informações são organizadas em abas: **Alunos matriculados**, **Chamadas realizadas**, **Ocorrências** e **Transferências**. É possível pesquisar dentro de cada aba. A lista de alunos mostra matrículas atuais e históricas, colégio, frequência por matrícula e foto ao focar/passar o mouse (quando cadastrada).
+
+A visão vem da rota `GET /api/classes/<id>/overview`. Professores só podem consultar turmas vinculadas a eles e enxergam ocorrências, mas não transferências. A Secretaria pode consultar transferências, mas não ocorrências. Administrador e Coordenação visualizam todas as abas. Os dados são apenas de leitura nesta página; lançamentos seguem nos respectivos módulos.
+
+Para atualizar da versão anterior, preserve o `.env` e os volumes; execute `docker compose down && docker compose up --build -d`. Não é necessária migração de banco nesta atualização.
+
+
+## v0.9 — Ficha acadêmica individual
+
+Em **Alunos → Ver**, a ficha acadêmica exibe matrículas com frequência por turma, histórico de chamadas, ocorrências pedagógicas e transferências. Os dados de ocorrências aparecem apenas para administrador, coordenação e professor vinculado; transferências apenas para administrador, coordenação e secretaria.
+
+Nova rota: `GET /api/students/{id}/academic-profile`. A API limita o professor aos vínculos de suas turmas. A secretaria não recebe ocorrências pedagógicas na resposta. O histórico de horas não é consolidado entre turmas transferidas.
+
+Sem alterações de esquema do banco: para atualizar, preserve seus volumes Docker e execute `docker compose down` e `docker compose up --build -d`.

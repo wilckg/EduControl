@@ -291,6 +291,29 @@ def classes():
     if current_user().role=='professor': q=q.filter_by(teacher_id=current_user().id)
     return jsonify([class_json(c) for c in q.all()])
 
+@app.get('/api/classes/<int:class_id>/overview')
+@require()
+def class_overview(class_id):
+    clazz = accessible_class(class_id)
+    enrollments = Enrollment.query.filter_by(class_id=class_id).order_by(Enrollment.id).all()
+    lessons = Lesson.query.filter_by(class_id=class_id).order_by(Lesson.held_on.desc(), Lesson.id.desc()).all()
+    payload = dict(
+        clazz=class_json(clazz),
+        enrollments=[dict(**enrollment_json(e), frequency=attendance_stats(e)) for e in enrollments],
+        lessons=[dict(**lesson_json(l), present=Attendance.query.filter_by(lesson_id=l.id,status='P').count(),
+                      absent=Attendance.query.filter(Attendance.lesson_id==l.id,Attendance.status.in_(['F','J'])).count()) for l in lessons],
+    )
+    if current_user().role in ('admin','coordenador','professor'):
+        occurrences = Occurrence.query.filter_by(class_id=class_id).order_by(Occurrence.created_at.desc()).all()
+        payload['occurrences'] = [dict(id=o.id, student=student_json(o.student), category=o.category,
+            description=o.description, author=o.author.name, created_at=o.created_at.isoformat()) for o in occurrences]
+    if current_user().role in ('admin','coordenador','secretaria'):
+        transfers = Transfer.query.filter((Transfer.from_class_id==class_id) | (Transfer.to_class_id==class_id)).order_by(Transfer.transferred_at.desc()).all()
+        payload['transfers'] = [dict(id=t.id,student=student_json(db.session.get(Student,t.student_id)),
+            from_class=db.session.get(Class,t.from_class_id).name,to_class=db.session.get(Class,t.to_class_id).name,
+            reason=t.reason,transferred_at=t.transferred_at.isoformat()) for t in transfers]
+    return jsonify(payload)
+
 @app.post('/api/classes')
 @require('admin','coordenador','secretaria')
 def create_class():
@@ -340,6 +363,44 @@ def students():
         q=Student.query.filter(Student.id.in_(ids))
     else:q=Student.query
     return jsonify([student_json(s) for s in q.order_by(Student.name)])
+
+@app.get('/api/students/<int:sid>/academic-profile')
+@require()
+def student_academic_profile(sid):
+    student=db.session.get(Student,sid)
+    if not student: abort(404,description='Aluno não encontrado')
+    if not student_visible(student): abort(403,description='Aluno não vinculado às turmas do professor')
+    user=current_user()
+    registrations=Enrollment.query.filter_by(student_id=sid).order_by(Enrollment.enrolled_at.desc(),Enrollment.id.desc()).all()
+    if user.role=='professor':
+        registrations=[e for e in registrations if e.clazz.teacher_id==user.id]
+    relevant_class_ids=[e.class_id for e in registrations]
+    enrollment_ids=[e.id for e in registrations]
+    records=[]
+    if enrollment_ids:
+        joined=(db.session.query(Attendance,Lesson,Enrollment)
+            .join(Lesson,Attendance.lesson_id==Lesson.id)
+            .join(Enrollment,Attendance.enrollment_id==Enrollment.id)
+            .filter(Attendance.enrollment_id.in_(enrollment_ids))
+            .order_by(Lesson.held_on.desc(),Lesson.id.desc()).all())
+        records=[dict(date=l.held_on.isoformat(),hours=l.hours,topic=l.topic,status=a.status,
+                      class_name=e.clazz.name,course=e.clazz.course.name) for a,l,e in joined]
+    payload=dict(student=student_json(student),
+                 enrollments=[dict(**enrollment_json(e),frequency=attendance_stats(e),course_hours=e.clazz.course.hours) for e in registrations],
+                 attendance=records)
+    if user.role in ('admin','coordenador','professor'):
+        query=Occurrence.query.filter_by(student_id=sid)
+        if user.role=='professor':
+            query=query.filter(Occurrence.class_id.in_(relevant_class_ids))
+        payload['occurrences']=[dict(id=o.id,class_name=db.session.get(Class,o.class_id).name,
+            category=o.category,description=o.description,author=o.author.name,created_at=o.created_at.isoformat())
+            for o in query.order_by(Occurrence.created_at.desc()).all()]
+    if user.role in ('admin','coordenador','secretaria'):
+        transfers=Transfer.query.filter_by(student_id=sid).order_by(Transfer.transferred_at.desc()).all()
+        payload['transfers']=[dict(id=t.id,from_class=db.session.get(Class,t.from_class_id).name,
+            to_class=db.session.get(Class,t.to_class_id).name,reason=t.reason,
+            transferred_at=t.transferred_at.isoformat()) for t in transfers]
+    return jsonify(payload)
 
 @app.post('/api/students')
 @require('admin','coordenador','secretaria')
