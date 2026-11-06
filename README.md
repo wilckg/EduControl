@@ -1,3 +1,13 @@
+> **v1.0 — Etapa 1 (refatoração estrutural)**: versão incremental baseada na v0.9. Organiza os módulos frontend/backend e ajusta as permissões iniciais da Coordenação. **Ainda não implementa** importação em lote, relatórios Excel, contatos, auditoria detalhada ou rodapé com logomarcas oficiais. Veja ARCHITECTURE.md.
+
+## Atualização v0.3 — perfis e interface
+
+- **Secretaria:** dashboard próprio com matrículas ativas, alunos cadastrados, turmas, transferências recentes, turmas sem professor e atalhos de operação.
+- **Permissões:** o menu apresenta apenas os módulos do perfil; backend mantém autorização obrigatória nas rotas.
+- **Professores em turmas:** endpoint restrito `/api/teachers` para selecionar responsáveis sem expor dados pessoais de outros usuários.
+- **Visual:** redesign com tipografia mais legível, cores sóbrias, foco em tabelas, ações e estados.
+- **Importante:** não foi possível concluir `npm install`/build integrado no ambiente de geração. Execute `docker compose up --build -d` e confira `docker compose logs -f frontend backend` para validar localmente. Não use `docker compose down -v` se deseja preservar dados.
+
 # EduControl — POC de Gestão Acadêmica
 
 Aplicação demonstrativa com **React + TypeScript (Vite)**, **Flask + SQLAlchemy** e **PostgreSQL**. Idioma: português brasileiro. Sem integração com serviços externos.
@@ -95,7 +105,7 @@ export DATABASE_URL='postgresql+psycopg://educontrol:educontrol_dev@localhost:54
 export SECRET_KEY='substitua_por_uma_string_aleatoria_longa'
 flask --app app init-db
 flask --app app seed
-python app.py
+flask --app app run --host 0.0.0.0 --port 5000
 ```
 
 No **PowerShell**, substitua as duas primeiras linhas por:
@@ -123,24 +133,40 @@ O Vite encaminha chamadas `/api` para Flask em `localhost:5000` no desenvolvimen
 5. Entre como secretaria e, em **Transferências**, transfira um aluno ativo de `WEB-2026-A` para `WEB-2026-B`.
 6. Verifique em **Alunos** o histórico de matrículas: a origem estará como transferida e o destino como ativa.
 
-## Arquitetura
+## Arquitetura (reorganização inicial v1.0)
 
 ```text
 educontrol-poc/
 ├── backend/
-│   ├── app.py               # Modelos SQLAlchemy, RBAC, API e seed
+│   ├── app/
+│   │   ├── __init__.py       # Registro dos módulos e app Flask
+│   │   ├── core.py           # Configuração, modelos e regras compartilhadas
+│   │   ├── commands.py       # init-db, seed
+│   │   └── routes/
+│   │       ├── auth.py
+│   │       ├── catalog.py
+│   │       ├── students.py
+│   │       ├── attendance.py
+│   │       ├── operations.py
+│   │       └── dashboards.py
 │   ├── requirements.txt
 │   └── Dockerfile
 ├── frontend/
-│   ├── src/main.tsx         # Telas React e cliente API
-│   ├── src/style.css        # Layout responsivo
-│   ├── vite.config.ts       # Proxy /api
-│   ├── package.json
-│   └── Dockerfile
-├── docker-compose.yml       # PostgreSQL + Flask + React
-├── .env.example
+│   ├── src/
+│   │   ├── main.tsx         # Entrada da aplicação
+│   │   ├── App.tsx          # Composição e navegação (ainda a dividir)
+│   │   ├── shared.tsx       # Helpers e componentes compartilhados
+│   │   ├── *Module.tsx     # Módulos administrativos
+│   │   ├── *Dashboard.tsx  # Painéis por perfil
+│   │   ├── *Profile.tsx / *Overview.tsx
+│   │   └── style.css
+│   └── package.json
+├── docker-compose.yml
+├── ARCHITECTURE.md
 └── README.md
 ```
+
+O detalhamento técnico e as próximas etapas estão em **ARCHITECTURE.md**.
 
 ## Regras de frequência (POC)
 
@@ -166,13 +192,6 @@ Este projeto é uma **POC local**, não um produto pronto para produção. Alter
 ### Atualização
 Substitua os arquivos pelo ZIP v0.2 e rode `docker compose up --build -d`. O modelo do banco não mudou nesta versão; não é necessário executar o seed novamente.
 
-## Atualização v0.3 — perfis e interface
-
-- **Secretaria:** dashboard próprio com matrículas ativas, alunos cadastrados, turmas, transferências recentes, turmas sem professor e atalhos de operação.
-- **Permissões:** o menu apresenta apenas os módulos do perfil; backend mantém autorização obrigatória nas rotas.
-- **Professores em turmas:** endpoint restrito `/api/teachers` para selecionar responsáveis sem expor dados pessoais de outros usuários.
-- **Visual:** redesign com tipografia mais legível, cores sóbrias, foco em tabelas, ações e estados.
-- **Importante:** não foi possível concluir `npm install`/build integrado no ambiente de geração. Execute `docker compose up --build -d` e confira `docker compose logs -f frontend backend` para validar localmente. Não use `docker compose down -v` se deseja preservar dados.
 
 ## Novidades v0.4
 - Dashboard do professor: turmas vinculadas e acesso rápido à chamada (sem alertas de frequência).
