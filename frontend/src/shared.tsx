@@ -7,6 +7,7 @@ export type Obj=Record<string,any>;
 export type Auth={user:Obj,csrf:string};
 let csrf='';
 export function setCsrf(token:string){csrf=token;}
+export function getCsrf(){return csrf;}
 export async function api(path:string,options:RequestInit={}){
   const response=await fetch('/api'+path,{credentials:'same-origin',...options,headers:{...(options.body?{'Content-Type':'application/json'}:{}),...(options.method&&options.method!=='GET'?{'X-CSRF-Token':csrf}:{}),...(options.headers||{})}});
   const result=await response.json().catch(()=>({}));

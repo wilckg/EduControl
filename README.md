@@ -245,6 +245,21 @@ Nova rota: `GET /api/students/{id}/academic-profile`. A API limita o professor a
 
 Sem alterações de esquema do banco: para atualizar, preserve seus volumes Docker e execute `docker compose down` e `docker compose up --build -d`.
 
-> **v1.0 — Etapa 2 (refatoração + relatórios)**: evolução da etapa 1. Inclui módulos separados de modelos, segurança, serialização e serviços; tela de **Relatórios** para Administração, Secretaria e Coordenação, com filtros, indicadores e exportação XLSX. Não inclui ainda importação em lote, acompanhamento de contatos, auditoria detalhada nem as logos oficiais. Veja [`REFACTOR_V1_STAGE2.md`](REFACTOR_V1_STAGE2.md) para atualização e cálculos.
 
-> **Histórico — Etapa 1 (refatoração estrutural)**: versão incremental baseada na v0.9. Organiza os módulos frontend/backend e ajusta as permissões iniciais da Coordenação. **Ainda não implementava** importação em lote, relatórios Excel, contatos, auditoria detalhada ou rodapé com logomarcas oficiais. Veja ARCHITECTURE.md.
+## v1.0 — Etapa 1 (refatoração estrutural)**: versão incremental baseada na v0.9. Organiza os módulos frontend/backend e ajusta as permissões iniciais da Coordenação. **Ainda não implementava** importação em lote, relatórios Excel, contatos, auditoria detalhada ou rodapé com logomarcas oficiais. Veja ARCHITECTURE.md.
+
+## v1.0 — Etapa 2 (refatoração + relatórios)**: evolução da etapa 1. Inclui módulos separados de modelos, segurança, serialização e serviços; tela de **Relatórios** para Administração, Secretaria e Coordenação, com filtros, indicadores e exportação XLSX. Não inclui ainda importação em lote, acompanhamento de contatos, auditoria detalhada nem as logos oficiais. Veja [`REFACTOR_V1_STAGE2.md`](REFACTOR_V1_STAGE2.md) para atualização e cálculos.
+
+## v1.0 — Etapa 3 (importação em lote)
+
+Em **Alunos → Importar planilha**, Administração e Secretaria podem carregar CSV UTF-8 ou XLSX, configurar o mapeamento de colunas, visualizar erros e confirmar o cadastro de alunos e matrículas. Os dados são revalidados na confirmação. Consulte [`ETAPA3.md`](ETAPA3.md) para detalhes e limitações.
+
+Após atualizar a aplicação, aplique a migração inicial do Alembic mantendo seu volume de dados:
+
+```bash
+docker compose up --build -d
+docker compose exec backend alembic upgrade head
+docker compose exec backend python -m pytest -q
+```
+
+A migração baseline preserva os cadastros existentes. Faça backup do PostgreSQL antes de executar migrações, sobretudo fora da POC.
