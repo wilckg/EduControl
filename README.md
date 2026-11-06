@@ -15,7 +15,7 @@ Aplicação demonstrativa com **React + TypeScript (Vite)**, **Flask + SQLAlchem
 - Alertas: até 8 horas restantes (atenção), até 4 horas (crítico), limite ultrapassado (excedido). Frequência mínima editável ao cadastrar curso.
 - Dados fictícios iniciais para experimentar, inclusive alunos com faltas.
 
-**Limitações intencionais:** nesta versão, as horas cursadas na turma de origem **não são consolidadas** automaticamente na frequência da matrícula de destino; regras de aproveitamento, abono/justificativas, calendário por encontros, uploads de fotos, relatórios/exportação, recuperação de senha, CRUD completo de edição/exclusão, logs detalhados e notificações externas são evoluções futuras. Alertas são calculados ao consultar a API, sem envio de e-mail/WhatsApp. O carômetro usa iniciais (não fotos reais). Um aluno transferido após a criação de aulas no destino somente aparecerá nas novas aulas do destino. O endpoint de criação de aula marca todos os alunos ativos inicialmente como presentes: o professor deve revisar antes de salvar. Os horários das aulas e conflitos de agenda ainda não são modelados.
+**Limitações intencionais:** nesta versão, as horas cursadas na turma de origem **não são consolidadas** automaticamente na frequência da matrícula de destino; regras de aproveitamento, abono/justificativas, calendário por encontros, modelos oficiais de exportação de chamadas, importação em lote, recuperação de senha, logs detalhados e notificações externas são evoluções futuras. Alertas são calculados ao consultar a API, sem envio de e-mail/WhatsApp. O carômetro usa fotografias quando cadastradas e iniciais como alternativa. Um aluno transferido após a criação de aulas no destino somente aparecerá nas novas aulas do destino. O endpoint de criação de aula marca todos os alunos ativos inicialmente como presentes: o professor deve revisar antes de salvar. Os horários das aulas e conflitos de agenda ainda não são modelados.
 
 ## Requisitos
 
@@ -245,5 +245,6 @@ Nova rota: `GET /api/students/{id}/academic-profile`. A API limita o professor a
 
 Sem alterações de esquema do banco: para atualizar, preserve seus volumes Docker e execute `docker compose down` e `docker compose up --build -d`.
 
+> **v1.0 — Etapa 2 (refatoração + relatórios)**: evolução da etapa 1. Inclui módulos separados de modelos, segurança, serialização e serviços; tela de **Relatórios** para Administração, Secretaria e Coordenação, com filtros, indicadores e exportação XLSX. Não inclui ainda importação em lote, acompanhamento de contatos, auditoria detalhada nem as logos oficiais. Veja [`REFACTOR_V1_STAGE2.md`](REFACTOR_V1_STAGE2.md) para atualização e cálculos.
 
-> **v1.0 — Etapa 1 (refatoração estrutural)**: versão incremental baseada na v0.9. Organiza os módulos frontend/backend e ajusta as permissões iniciais da Coordenação. **Ainda não implementa** importação em lote, relatórios Excel, contatos, auditoria detalhada ou rodapé com logomarcas oficiais. Veja ARCHITECTURE.md.
+> **Histórico — Etapa 1 (refatoração estrutural)**: versão incremental baseada na v0.9. Organiza os módulos frontend/backend e ajusta as permissões iniciais da Coordenação. **Ainda não implementava** importação em lote, relatórios Excel, contatos, auditoria detalhada ou rodapé com logomarcas oficiais. Veja ARCHITECTURE.md.

@@ -11,6 +11,7 @@ import TeacherDashboard from './TeacherDashboard';
 import SecretaryDashboard from './SecretaryDashboard';
 import Login from './Login';
 import Table from './Table';
+import Reports from './Reports';
 
 export default function App(){
  const[auth,setAuth]=useState<Auth|null>(null);const[loading,setLoading]=useState(true);const[page,setPage]=useState('dashboard');const[data,setData]=useState<Obj>({});const[error,setError]=useState('');const[notice,setNotice]=useState('');const[busy,setBusy]=useState(false);
@@ -19,7 +20,7 @@ export default function App(){
    if(!auth)return;
    try{
     const endpoints:Obj={dashboard:'/dashboard',courses:'/courses',classes:'/classes',students:'/students',enrollments:'/enrollments'};
-    if(can(auth.user.role,['admin','coordenador']))endpoints.users='/users';
+    if(auth.user.role==='admin')endpoints.users='/users';
     if(can(auth.user.role,['admin','coordenador','secretaria']))endpoints.alerts='/alerts';
     if(auth.user.role==='secretaria'){endpoints.secretaria='/secretaria/summary';endpoints.teachers='/teachers';}
     if(can(auth.user.role,['admin','coordenador','professor']))endpoints.occurrences='/occurrences';
@@ -63,8 +64,9 @@ export default function App(){
  {permitted(user.role,page)&&page==='occurrences'&&<HistoryModule key="occurrences" kind="occurrences" records={data.occurrences||[]} students={studs} classes={cls} enrollments={enroll} role={user.role} onChange={refresh} setError={setError} setNotice={setNotice}/>}
  {permitted(user.role,page)&&page==='transfers'&&<HistoryModule key="transfers" kind="transfers" records={data.transfers||[]} students={studs} classes={cls} enrollments={enroll} role={user.role} onChange={refresh} setError={setError} setNotice={setNotice}/>}
  {page==='users'&&user.role==='admin'&&<UserModule users={data.users||[]} currentId={user.id} onChange={refresh} setError={setError} setNotice={setNotice}/>}
+ {permitted(user.role,page)&&page==='reports'&&<Reports courses={courses} classes={cls} students={studs}/>}
  {permitted(user.role,page)&&page==='alerts'&&<><div className="hint"><Clock3 size={18}/> Limites configuráveis por curso. Atenção: até 8h restantes; crítico: até 4h; excedido: acima do máximo permitido.</div><section className="panel"><h3>Risco de frequência</h3><Table headers={['Aluno','Turma','Faltas','Horas restantes','Frequência realizada','Situação']} rows={(data.alerts||[]).map((a:Obj)=>[a.student.name,a.class_name,hours(a.absent_hours),hours(a.remaining_absent_hours),`${a.attendance_percent}%`,a.severity==='exceeded'?'Limite excedido':a.severity==='critical'?'Crítico':'Atenção'])}/></section></>}
- <footer>Fábrica de Programadores · EduControl v0.8 • Dados fictícios</footer></main></div>
+ <footer>Fábrica de Programadores · EduControl v1.0 • POC</footer></main></div>
 }
 
 

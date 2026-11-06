@@ -26,3 +26,8 @@ Na próxima etapa, mover módulos para pastas `features/`, introduzir tipagem de
 ## Segurança e evolução
 
 Ajustada a criação de cursos/turmas para Admin/Secretaria, e chamadas para Admin/Professor. A Coordenação segue consultando e pode editar dados de alunos e transferir, conforme a matriz desejada. Antes de produção, validar autorização de cada endpoint (principalmente fotos e consulta), proteção CSRF, migrações e trilha de auditoria completa.
+
+
+## Etapa 2 — Extração de domínio
+
+Consulte `REFACTOR_V1_STAGE2.md` para a organização de models, security, serializers, services e rotas de relatórios.

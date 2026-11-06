@@ -32,7 +32,7 @@ def logout(): session.clear(); return jsonify(ok=True)
 def me(): return jsonify(user=user_json(current_user()),csrf=session['csrf'])
 
 @app.get('/api/users')
-@require('admin','coordenador')
+@require('admin')
 def users(): return jsonify([user_json(u) for u in User.query.order_by(User.name)])
 
 @app.post('/api/users')
