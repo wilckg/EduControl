@@ -80,10 +80,31 @@ class Transfer(db.Model):
     reason = db.Column(db.String(500), nullable=False)
     transferred_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
 
+class StudentContact(db.Model):
+    """Histórico administrativo de contatos com alunos ou responsáveis."""
+    id = db.Column(db.Integer, primary_key=True)
+    student_id = db.Column(db.Integer, db.ForeignKey('student.id'), nullable=False, index=True)
+    author_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    contacted_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False, index=True)
+    channel = db.Column(db.String(24), nullable=False)
+    subject = db.Column(db.String(150), nullable=False)
+    outcome = db.Column(db.String(32), nullable=False)
+    notes = db.Column(db.Text, nullable=False)
+    next_action = db.Column(db.String(400))
+    followup_on = db.Column(db.Date)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
+    student = db.relationship('Student')
+    author = db.relationship('User')
+
 class Audit(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer)
     action = db.Column(db.String(80), nullable=False)
     details = db.Column(db.String(300))
+    entity_type = db.Column(db.String(60), index=True)
+    entity_id = db.Column(db.Integer)
+    before_data = db.Column(db.JSON)
+    after_data = db.Column(db.JSON)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 

@@ -1,5 +1,6 @@
 """Rotas de students do EduControl."""
 from ..core import *
+from ..models import StudentContact
 
 @app.get('/api/students')
 @require()
@@ -80,7 +81,7 @@ def update_student(sid):
 def delete_student(sid):
     st=db.session.get(Student,sid)
     if not st:abort(404,description='Aluno não encontrado')
-    if (Enrollment.query.filter_by(student_id=sid).first() or Occurrence.query.filter_by(student_id=sid).first() or Transfer.query.filter_by(student_id=sid).first()):abort(409,description='Aluno com histórico não pode ser excluído')
+    if (Enrollment.query.filter_by(student_id=sid).first() or Occurrence.query.filter_by(student_id=sid).first() or Transfer.query.filter_by(student_id=sid).first() or StudentContact.query.filter_by(student_id=sid).first()):abort(409,description='Aluno com histórico não pode ser excluído')
     db.session.delete(st);audit('student.delete',sid);db.session.commit();return jsonify(ok=True)
 
 

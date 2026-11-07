@@ -5,8 +5,11 @@ from flask import session, abort
 from .extensions import db
 from .models import User, Class, Audit
 
-def audit(action, details=''):
-    db.session.add(Audit(user_id=session.get('uid'), action=action, details=str(details)[:300]))
+def audit(action, details='', *, entity_type=None, entity_id=None, before=None, after=None):
+    """Registra evento no mesmo commit da ação. Não armazene segredos nem informações sensíveis."""
+    db.session.add(Audit(user_id=session.get('uid'), action=action,
+                         details=str(details)[:300], entity_type=entity_type,
+                         entity_id=entity_id, before_data=before, after_data=after))
 
 def current_user():
     return db.session.get(User, session.get('uid')) if session.get('uid') else None

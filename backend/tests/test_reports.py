@@ -73,3 +73,38 @@ def test_report_export_and_role(client):
 def test_invalid_dates(client):
     login(client,'admin@demo.test')
     assert client.get('/api/reports/attendance?date_from=2026-11-10&date_to=2026-11-01').status_code==400
+
+def test_operational_export_preview_csv_xlsx(client):
+    import csv
+    from io import StringIO, BytesIO
+    from openpyxl import load_workbook
+    login(client,'admin@demo.test')
+    preview = client.get('/api/exports/attendance/preview?class_id=1')
+    assert preview.status_code == 200
+    assert preview.json['total'] == 3
+    assert [r['presenca'] for r in preview.json['rows']] == ['P','F','P']
+    assert [r['horas_falta'] for r in preview.json['rows']] == [0,4,0]
+    csv_result = client.get('/api/exports/attendance/download?class_id=1&format=csv')
+    assert csv_result.status_code == 200
+    assert csv_result.data.startswith(b'\xef\xbb\xbf')
+    records = list(csv.DictReader(StringIO(csv_result.data.decode('utf-8-sig'))))
+    assert len(records) == 3
+    assert records[1]['presenca'] == 'F'
+    xlsx_result = client.get('/api/exports/attendance/download?class_id=1&format=xlsx')
+    assert xlsx_result.status_code == 200
+    wb = load_workbook(BytesIO(xlsx_result.data), read_only=True)
+    assert wb.sheetnames == ['Registros','Matriz','Legenda']
+    assert wb['Registros']['A2'].value == 'WEB-A'
+    assert wb['Matriz']['C2'].value == 'P'
+
+
+def test_operational_export_validation_and_access(client):
+    login(client,'admin@demo.test')
+    assert client.get('/api/exports/attendance/preview').status_code == 400
+    assert client.get('/api/exports/attendance/download?class_id=1&format=pdf').status_code == 400
+    assert client.get('/api/exports/attendance/preview?class_id=1&date_from=2026-12-01&date_to=2026-01-01').status_code == 400
+    assert client.get('/api/exports/attendance/preview?class_id=999').status_code == 404
+    client.post('/api/auth/logout',headers={'X-CSRF-Token':client.get('/api/auth/me').json['csrf']})
+    login(client,'prof@demo.test')
+    assert client.get('/api/exports/attendance/preview?class_id=1').status_code == 403
+    assert client.get('/api/exports/attendance/download?class_id=1').status_code == 403

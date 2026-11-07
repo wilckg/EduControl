@@ -190,7 +190,6 @@ Substitua os arquivos pelo ZIP v0.2 e rode `docker compose up --build -d`. O mod
 - **Visual:** redesign com tipografia mais legível, cores sóbrias, foco em tabelas, ações e estados.
 - **Importante:** não foi possível concluir `npm install`/build integrado no ambiente de geração. Execute `docker compose up --build -d` e confira `docker compose logs -f frontend backend` para validar localmente. Não use `docker compose down -v` se deseja preservar dados.
 
-
 ## Novidades v0.4
 - Dashboard do professor: turmas vinculadas e acesso rápido à chamada (sem alertas de frequência).
 - Dashboard da Secretaria: painel de alertas de frequência, matrículas e transferências.
@@ -245,10 +244,11 @@ Nova rota: `GET /api/students/{id}/academic-profile`. A API limita o professor a
 
 Sem alterações de esquema do banco: para atualizar, preserve seus volumes Docker e execute `docker compose down` e `docker compose up --build -d`.
 
+## Histórico — Etapa 1 (refatoração estrutural): 
+Versão incremental baseada na v0.9. Organiza os módulos frontend/backend e ajusta as permissões iniciais da Coordenação. **Ainda não implementava** importação em lote, relatórios Excel, contatos, auditoria detalhada ou rodapé com logomarcas oficiais. Veja ARCHITECTURE.md.
 
-## v1.0 — Etapa 1 (refatoração estrutural)**: versão incremental baseada na v0.9. Organiza os módulos frontend/backend e ajusta as permissões iniciais da Coordenação. **Ainda não implementava** importação em lote, relatórios Excel, contatos, auditoria detalhada ou rodapé com logomarcas oficiais. Veja ARCHITECTURE.md.
-
-## v1.0 — Etapa 2 (refatoração + relatórios)**: evolução da etapa 1. Inclui módulos separados de modelos, segurança, serialização e serviços; tela de **Relatórios** para Administração, Secretaria e Coordenação, com filtros, indicadores e exportação XLSX. Não inclui ainda importação em lote, acompanhamento de contatos, auditoria detalhada nem as logos oficiais. Veja [`REFACTOR_V1_STAGE2.md`](REFACTOR_V1_STAGE2.md) para atualização e cálculos.
+## v1.0 — Etapa 2 (refatoração + relatórios): 
+Evolução da etapa 1. Inclui módulos separados de modelos, segurança, serialização e serviços; tela de **Relatórios** para Administração, Secretaria e Coordenação, com filtros, indicadores e exportação XLSX. Não inclui ainda importação em lote, acompanhamento de contatos, auditoria detalhada nem as logos oficiais. Veja [`REFACTOR_V1_STAGE2.md`](REFACTOR_V1_STAGE2.md) para atualização e cálculos.
 
 ## v1.0 — Etapa 3 (importação em lote)
 
@@ -263,3 +263,12 @@ docker compose exec backend python -m pytest -q
 ```
 
 A migração baseline preserva os cadastros existentes. Faça backup do PostgreSQL antes de executar migrações, sobretudo fora da POC.
+
+## Novidades da Etapa 4
+
+Consulte [ETAPA4.md](ETAPA4.md) para os contatos com alunos, consulta de auditoria, importação em etapas e atualização do esquema do banco.
+
+Ao migrar da Etapa 3, execute `docker compose exec backend alembic upgrade head` **após** atualizar as imagens. Preserve os volumes de dados e fotografias.
+
+## Etapa 5: 
+Veja [ETAPA5.md](ETAPA5.md) para exportação de chamadas e rodapé institucional.

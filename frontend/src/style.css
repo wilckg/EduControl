@@ -177,3 +177,297 @@ body{background:#f7f8fa}
 .import-error{display:inline-flex;align-items:center;gap:5px;color:#aa3535;font-size:13px}
 .import-actions{display:flex;align-items:center;flex-wrap:wrap;gap:14px}
 @media(max-width:700px){.import-fields{grid-template-columns:1fr}}
+
+/* Etapa 4 — Importação em etapas: linguagem institucional, sem excesso de decoração */
+.import-wizard{max-width:1190px;margin:0 auto}.import-hero h2{font-size:25px;margin:5px 0 6px;color:#18395e}.import-hero p{color:#64748b;margin:0;line-height:1.5}.import-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.import-step{display:flex;align-items:center;gap:12px;padding:16px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;color:#8090a3}.import-step.current{border-color:#2f72b8;background:#f2f7fd;color:#163d69;box-shadow:inset 0 3px #e1ae24}.import-step.complete{color:#16624c}.import-step-number{width:35px;height:35px;flex:none;display:grid;place-items:center;border-radius:50%;background:#eef2f6;color:#68798c;font-weight:700}.import-step.current .import-step-number{background:#1d5b9b;color:#fff}.import-step.complete .import-step-number{background:#e2f4eb;color:#1f7c57}.import-step b,.import-step small{display:block}.import-step b{font-size:13px}.import-step small{font-size:11px;font-weight:500;margin-top:3px}.import-card{padding:27px 30px}.import-section-title{display:flex;align-items:center;gap:13px;margin-bottom:22px}.import-section-title h3{margin:0 0 5px;font-size:19px;color:#1b3554}.import-section-title p{font-size:13px;color:#6c7b8d;margin:0}.import-section-icon{height:46px;width:46px;background:#eaf3fd;color:#1a609f;border-radius:12px;display:grid;place-items:center;flex:none}.import-dropzone{border:2px dashed #b5c8df;background:#f8fbff;min-height:236px;padding:30px 15px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s}.import-dropzone:hover,.import-dropzone:focus-visible,.import-dropzone.dragging{border-color:#2162a6;background:#edf5ff;outline:none}.import-dropzone.with-file{border-style:solid;border-color:#83b0d8}.import-dropicon{width:65px;height:65px;display:grid;place-items:center;border-radius:15px;background:#e5effb;color:#25639b;margin-bottom:6px}.import-dropzone b{font-size:17px;color:#1d385c;overflow-wrap:anywhere}.import-dropzone span:not(.import-dropicon){font-size:13px;color:#516982}.import-dropzone small{font-size:12px;color:#8090a1}.import-under-drop{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:17px;flex-wrap:wrap}.import-note{display:flex;align-items:center;gap:10px;color:#52677f;flex:1;min-width:230px}.import-note svg{color:#aa8a25;flex:none}.import-note p{margin:0;font-size:12px;line-height:1.6}.import-select-row{margin-top:27px;display:grid;grid-template-columns:minmax(250px,1fr) 1fr;gap:24px;align-items:center;border-top:1px solid #e9edf2;padding-top:21px}.import-select-row p{font-size:12px;color:#738398;line-height:1.6}.import-footer-actions{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:21px;padding-top:19px;border-top:1px solid #e8edf3;flex-wrap:wrap}.import-footer-actions span{font-size:12px;color:#718198}.import-footer-actions button,.import-under-drop button,.audit-search button,.contact-toolbar button,.contact-actions button{display:inline-flex;align-items:center;justify-content:center;gap:8px}.import-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.import-kpis>div{border:1px solid #e4eaf2;background:#f8fafc;padding:17px;border-radius:11px;display:grid;gap:7px}.import-kpis svg{color:#2c6ca6}.import-kpis small{font-size:12px;color:#657a90}.import-kpis strong{font-size:25px;color:#152f51}.import-kpis .with-error{background:#fff7f5;border-color:#f4d9d3}.import-kpis .with-error svg,.import-kpis .with-error strong{color:#b63e33}.import-inline-warning{display:flex;align-items:center;gap:8px;padding:11px;background:#fff6df;border-radius:8px;color:#7c5615;font-size:12px}.import-table-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:24px}.import-table-head h4{margin:0;font-size:15px;color:#233954}.import-table-head h4 span,.import-table-head>span{font-size:12px;font-weight:400;color:#8291a1}.import-result{display:inline-flex;align-items:center;gap:4px;background:#e7f6ee;color:#206b4d;padding:6px 9px;font-size:11px;font-weight:700;border-radius:20px;white-space:normal}.import-result.skip{background:#eef1f5;color:#596778}.import-result.error{background:#fce9e9;color:#b03438}.import-result.enroll{background:#e7f0ff;color:#275ca1}.import-confirm{text-align:center}.import-confirm-icon{display:grid;place-items:center;width:76px;height:76px;border-radius:50%;background:#e8f0fc;color:#235f9c;margin:0 auto 17px}.import-confirm-icon.success{background:#e4f6ee;color:#16714f}.import-confirm h3{font-size:23px;color:#18395e;margin:0}.import-confirm>p{max-width:560px;margin:10px auto 25px;color:#718198;font-size:14px;line-height:1.6}.import-final-summary{display:grid;grid-template-columns:repeat(4,1fr);text-align:left;gap:12px}.import-final-summary div{background:#f8fafc;border:1px solid #e7edf3;border-radius:10px;padding:16px;min-width:0}.import-final-summary span,.import-final-summary b{display:block;overflow-wrap:anywhere}.import-final-summary span{color:#708197;font-size:12px;margin-bottom:7px}.import-final-summary b{font-size:15px;color:#203f62}.import-confirm-notice{display:flex;gap:10px;align-items:flex-start;text-align:left;background:#f3f7fc;border-radius:10px;padding:15px;margin-top:22px;color:#55708a;font-size:12px;line-height:1.5}.import-confirm-notice svg{flex:none;color:#3470a5}
+/* Contatos administrativos */
+.contact-toolbar,.contact-entry-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}.contact-toolbar h3{display:flex;align-items:center;gap:8px;margin:0 0 7px;color:#243b57}.contact-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.contact-form-grid .span-two{grid-column:1/-1}.contact-form{margin-top:15px;background:#f8fafc}.contact-actions{display:flex;gap:10px}.contact-list{display:grid;gap:11px;margin-top:18px}.contact-entry{border:1px solid #e4eaf2;border-left:3px solid #276ba7;border-radius:9px;padding:16px 17px;background:#fff}.contact-entry-head b,.contact-entry-head small{display:block}.contact-entry-head b{font-size:14px;color:#233b5c}.contact-entry-head small{margin-top:6px;font-size:12px;color:#75879b}.contact-entry p{line-height:1.6;white-space:pre-wrap;font-size:13px;color:#40556d;margin:13px 0}.contact-state{font-size:11px;font-weight:700;border-radius:30px;padding:7px 10px;background:#fff0d5;color:#865c19;white-space:nowrap}.contact-state.resolvido,.contact-state.respondeu{background:#e5f5eb;color:#236946}.contact-state.sem_resposta{background:#fceaea;color:#9b3d42}.contact-follow{display:flex;gap:7px;align-items:center;background:#f4f7fb;padding:11px;color:#425e79;font-size:12px;border-radius:7px}.contact-resolve{margin-top:10px;border:0;background:none;color:#246e57;font-size:12px;display:flex;align-items:center;gap:6px;padding:5px 0}.contact-empty{min-height:170px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:9px;border:1px dashed #cbd5e1;border-radius:10px;color:#6e8199}.contact-empty b{color:#304b68}.contact-empty span{font-size:12px;text-align:center;padding:0 12px}
+/* Consulta de auditoria */
+.audit-search{display:flex;align-items:end;gap:12px;flex-wrap:wrap}.audit-search .field{flex:1;min-width:250px;margin:0}.audit-pagination{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}.audit-pagination>div{display:flex;gap:8px}.audit-pagination small{color:#76889b}.audit-event{display:inline-flex;align-items:center;gap:7px;border-radius:6px;padding:7px 9px;background:#eaf2fb;color:#235d95;font-size:12px;font-weight:700}
+@media(max-width:800px){.import-steps{grid-template-columns:1fr}.import-card{padding:20px}.import-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.import-final-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.import-select-row{grid-template-columns:1fr}.contact-form-grid{grid-template-columns:1fr}.contact-form-grid .span-two{grid-column:1}.contact-toolbar{flex-direction:column}}
+@media(max-width:500px){.import-kpis,.import-final-summary{grid-template-columns:1fr}}
+.audit-search .field{min-width:160px;flex:1 1 160px}.audit-search .field:first-child{min-width:240px;flex:2 1 240px}.secretary-dashboard .priority-panel .item>.outline-btn{font-size:12px;white-space:nowrap}
+@media(max-width:640px){.secretary-dashboard .priority-panel .item{flex-wrap:wrap}}
+
+/* v1.0 etapa 5: rodapé institucional discreto */
+.institutional-footer{margin-top:45px;padding:20px 8px 8px;border-top:1px solid #e0e6ef;color:#51647c;text-align:center}
+.institutional-logos{display:flex;align-items:center;justify-content:center;gap:clamp(16px,3vw,44px);flex-wrap:wrap}
+.institution-logo{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-width:150px;max-width:230px;flex:1}
+.institution-logo img{max-width:175px;max-height:54px;width:auto;height:auto;object-fit:contain}
+.institution-logo>span:last-child{font-size:10px;color:#617188;line-height:1.4}
+.institution-placeholder{min-width:72px;height:46px;border:1px dashed #c0cddd;background:#f5f8fc;border-radius:7px;display:flex;align-items:center;justify-content:center;color:#456e9b;font-size:12px;font-weight:700;letter-spacing:.5px}
+.institutional-footnote{margin-top:14px;font-size:10px;color:#8290a1}
+.login-wrap{position:relative;padding-bottom:125px}
+.institutional-footer-login{position:absolute;bottom:0;left:0;right:0;margin:0;background:#fff;border-top:1px solid #e6ebf1;padding:10px 8px 9px}
+.institutional-footer-login .institution-logo img{max-height:35px}
+.institutional-footer-login .institution-placeholder{height:30px}
+.institutional-footer-login .institution-logo{gap:4px}
+.institutional-footer-login .institutional-footnote{margin-top:6px}
+.report-mode-tabs{display:flex;gap:8px;margin:0 0 20px;border-bottom:1px solid #dce5ee;padding-bottom:12px;flex-wrap:wrap}
+.report-mode-tabs button{border:0;background:transparent;color:#516984;padding:11px 16px;border-radius:8px;font-weight:650}
+.report-mode-tabs button.active{color:#144b8e;background:#e8f1fc}
+.operational-export{padding:26px}.operational-heading{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:22px;color:#24588e}
+.operational-heading h2{font-size:24px;margin:0 0 6px;color:#193b61}.operational-heading p{margin:0;font-size:13px;color:#70839a}
+.operational-filters{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:14px;margin-bottom:17px}
+.operational-actions{display:flex;gap:10px;flex-wrap:wrap}.operational-actions .primary{text-decoration:none;padding:10px 15px}
+.operational-summary{margin:23px 0 12px;display:flex;align-items:center;justify-content:space-between;gap:9px;flex-wrap:wrap;font-size:13px}
+.operational-summary span{font-size:12px;color:#718097}
+.operational-note{margin-top:18px;display:flex;gap:10px;padding:13px;background:#f1f6fc;border-left:3px solid #edc75a;border-radius:6px;color:#425b78;align-items:flex-start}
+.operational-note svg{flex-shrink:0}.operational-note p{margin:0;font-size:12px;line-height:1.7}
+@media(max-width:940px){.operational-filters{grid-template-columns:1fr 1fr}.login-wrap{padding-bottom:170px}}
+@media(max-width:640px){.operational-filters{grid-template-columns:1fr}.institution-logo{min-width:100px;max-width:140px}.institutional-footer-login{position:static}.login-wrap{padding-bottom:0}.institutional-logos{gap:10px}}
+
+
+/* etapa 5.1 - visual experimental com logos oficiais */
+body{background:linear-gradient(180deg,#eff4fb 0%,#f7f9fc 42%,#eef3fb 100%)}
+.shell{position:relative;background:transparent}
+.shell::before{content:"";position:fixed;inset:0;background:radial-gradient(circle at top left,rgba(34,93,174,.10),transparent 28%),radial-gradient(circle at bottom right,rgba(228,187,57,.09),transparent 26%);pointer-events:none;z-index:0}
+.sidebar,.main{position:relative;z-index:1}
+.sidebar{background:linear-gradient(180deg,#0d3580 0%,#0a2970 55%,#08235f 100%);border-right:0;box-shadow:14px 0 30px rgba(9,36,85,.12)}
+.brand-icon{background:#f0c534;color:#11397f}
+.accent{color:#ffd54a}
+.brand small{color:#c4d6f7}
+.nav{color:#d5e4ff;border:1px solid transparent}
+.nav:hover{background:rgba(255,255,255,.09)}
+.nav.active{background:#f4d742;color:#11397f;box-shadow:none}
+.sidebar-bottom{border-top:1px solid rgba(255,255,255,.12)}
+.sidebar-bottom button{color:#d5e4ff}
+.avatar{background:#dbe8ff;color:#0d3f90}
+.main{padding:24px 30px 30px}
+.topbar{background:rgba(255,255,255,.92);backdrop-filter:blur(8px);padding:18px 22px;border:1px solid #dde6f2;border-radius:20px;box-shadow:0 12px 30px rgba(31,55,103,.06)}
+.stats{margin-top:20px}
+.stat,.panel,.face,.table-wrap{border:1px solid #dfe7f3;box-shadow:0 10px 32px rgba(26,54,93,.05);border-radius:18px}
+.topbar h1{color:#15345b}
+.role{background:#edf4ff;color:#1f61b8}
+.login-wrap.visual-test-mode{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:32px 22px 0;background:linear-gradient(180deg,#edf3fb 0%,#f6f8fc 100%)}
+.login-shell{display:grid;grid-template-columns:1.12fr .88fr;gap:24px;max-width:1480px;width:100%;margin:0 auto;align-items:stretch}
+.login-hero,.visual-card{background:rgba(255,255,255,.95);border:1px solid #dfe6f3;border-radius:28px;box-shadow:0 22px 70px rgba(26,49,85,.10);overflow:hidden}
+.login-hero{display:grid;grid-template-columns:1fr 1fr;min-height:690px}
+.login-hero-image{position:relative;background:linear-gradient(180deg,rgba(13,53,128,.12),rgba(13,53,128,.88)),url('/branding/fabrica-predio.png') center/cover no-repeat;display:flex;align-items:flex-end;justify-content:flex-start;padding:34px}
+.login-hero-image::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,transparent 45%,rgba(241,194,41,.92) 45.4%,rgba(241,194,41,.92) 46.1%,transparent 46.5%);pointer-events:none}
+.login-hero-badge{position:absolute;top:26px;left:26px;background:rgba(255,255,255,.92);color:#173f7d;border:1px solid rgba(255,255,255,.75);padding:9px 14px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.2px;z-index:1}
+.login-hero-copy{position:relative;z-index:1;max-width:290px;color:#fff}
+.login-hero-copy strong{font-size:clamp(28px,3vw,48px);line-height:1.08;letter-spacing:-1px;display:block}
+.login-hero-copy span{color:#ffd54a}
+.login-card-prose{padding:46px 50px;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(180deg,#ffffff 0%,#fbfcfe 100%)}
+.brand-login{padding:0 0 16px;gap:14px;font-size:23px;color:#10387c}.brand-login span:last-child{display:block;line-height:1}.brand-login small{letter-spacing:.8px;font-size:11px;color:#667c98;margin-top:8px}
+.login-card-prose h1{font-size:49px;line-height:1.05;letter-spacing:-1.7px;margin:0 0 18px;color:#122e57}
+.login-card-prose p{font-size:18px;line-height:1.65;color:#637792;max-width:440px;margin:0 0 24px}
+.login-feature{display:flex;align-items:center;gap:12px;color:#234c83;font-weight:700;margin-top:12px;background:#f4f8ff;border:1px solid #e4edf9;border-radius:12px;padding:13px 15px}
+.login-feature svg{color:#f0c534}
+.visual-card{align-self:stretch;justify-self:stretch;padding:40px 42px;display:flex;flex-direction:column;justify-content:center;max-width:none;width:auto}
+.login-card-brand{display:flex;align-items:center;gap:14px;margin-bottom:20px}.login-card-brand .brand-icon{width:48px;height:48px;border-radius:14px}.login-card-brand strong{display:block;font-size:31px;line-height:1;color:#123c81;letter-spacing:-1px}.login-card-brand span{display:block;margin-top:5px;font-size:13px;color:#647a95}
+.visual-card h2{font-size:30px;color:#152f56;margin:0 0 8px}
+.visual-card p{color:#6b8098;font-size:15px;line-height:1.6;margin:0 0 18px}
+.input-with-icon{display:flex;align-items:center;gap:11px;border:1px solid #d9e3f0;border-radius:12px;background:#fff;padding:0 14px;transition:border-color .15s, box-shadow .15s}.input-with-icon:focus-within{border-color:#2b66d0;box-shadow:0 0 0 4px rgba(43,102,208,.10)}
+.input-with-icon svg{color:#6a84a7;flex:none}.input-with-icon input{border:0!important;box-shadow:none!important;padding:15px 0!important;background:transparent!important}
+.login-row-helper{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:6px 0 6px;font-size:13px;color:#5a708a;flex-wrap:wrap}.login-row-helper label{display:flex;align-items:center;gap:8px}.login-row-helper input{accent-color:#225fbe}.linklike{border:0;background:none;color:#1a58b5;font-weight:700;padding:0}
+.visual-login-btn{display:flex;align-items:center;justify-content:center;gap:10px;padding:15px 18px;border-radius:14px;background:linear-gradient(180deg,#1853b7 0%,#103c88 100%)}
+.visual-login-btn:hover{background:linear-gradient(180deg,#1d5ecf 0%,#11408f 100%)}
+.institutional-footer{background:rgba(255,255,255,.85);backdrop-filter:blur(5px);border-top:1px solid #dfe6f0;padding-top:18px}
+.institutional-logos{gap:26px}
+.institution-logo{position:relative;min-width:180px;max-width:260px;padding:0 12px}
+.institution-logo:not(:last-child)::after{content:"";position:absolute;right:-13px;top:10px;bottom:10px;width:1px;background:#d9e3ef}
+.institution-logo img{max-width:195px;max-height:56px}.institution-logo.compact img{max-height:62px}
+.institution-logo>span:last-child{font-size:10px;font-weight:700;letter-spacing:.15px}
+.institutional-footnote{font-size:10px;color:#71849a}
+.institutional-footer-login{position:static;margin:22px auto 0;max-width:1480px;width:100%;border:1px solid #dfe6f0;border-radius:22px 22px 0 0}
+.institutional-footer-login .institution-logo img{max-height:44px}
+@media(max-width:1180px){.login-shell{grid-template-columns:1fr}.login-hero{grid-template-columns:1fr;min-height:auto}.login-card-prose h1{font-size:40px}.login-hero-image{min-height:360px}.institutional-footer-login{border-radius:22px}}
+@media(max-width:720px){.main{padding:16px}.topbar{padding:15px 16px;border-radius:16px}.login-wrap.visual-test-mode{padding:18px 12px 0}.login-hero,.visual-card{border-radius:22px}.login-card-prose,.visual-card{padding:28px 24px}.login-card-prose h1{font-size:32px}.login-hero-copy strong{font-size:30px}.institution-logo{min-width:110px;max-width:170px}.institution-logo:not(:last-child)::after{display:none}.institutional-logos{gap:12px}}
+
+/* Etapa 5.2 — retorno ao layout original de login, mantendo foto da fachada */
+.login-wrap.login-classic-with-photo{
+ display:flex!important;flex-direction:column!important;min-height:100vh;
+ padding:0!important;background:#f6f8fc;
+}
+.login-classic-content{
+ width:100%;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+ flex:1;min-height:0;
+}
+.login-classic-with-photo .login-info{
+ position:relative;min-height:530px;padding:clamp(30px,5vw,72px);
+ background:linear-gradient(180deg,rgba(9,43,104,.60),rgba(5,31,83,.87)),url('/branding/fabrica-predio.png') center center / cover no-repeat;
+ display:flex;flex-direction:column;justify-content:space-between;color:white;
+}
+.login-classic-with-photo .login-info::before{content:"";position:absolute;inset:0;box-shadow:inset -4px 0 0 #f1c930;pointer-events:none}
+.login-classic-with-photo .login-info .brand{position:relative;color:#fff;padding:0;font-size:29px}
+.login-classic-with-photo .login-info .brand small{color:#dbe8ff;letter-spacing:1.2px;font-size:10px;margin-top:8px}
+.login-classic-with-photo .login-info .brand-icon{background:#f1c930;color:#0d347b}
+.login-classic-message{position:relative;max-width:570px}
+.login-classic-with-photo .login-info h1{font-size:clamp(30px,3.2vw,51px);line-height:1.15;margin:0 0 15px;letter-spacing:-1px}
+.login-classic-with-photo .login-info p{font-size:16px;line-height:1.6;color:#edf3ff;margin:0 0 22px}
+.login-classic-with-photo .login-feature{margin-top:8px;padding:10px 12px;color:#f4f8ff;background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.14);width:max-content;max-width:100%;font-size:13px}
+.login-classic-with-photo .login-feature svg{color:#f9d44e}
+.login-form-pane{display:flex;align-items:center;justify-content:center;padding:44px clamp(20px,4vw,68px);background:#fff}
+.login-classic-with-photo .login-card{width:min(430px,100%);max-width:none;align-self:auto;justify-self:auto}
+.login-classic-with-photo .login-card h2{color:#173765;font-size:30px}
+.login-classic-with-photo .login-card p{color:#6c7e93}
+.login-classic-with-photo .login-card .field input{border-radius:11px;padding:13px 14px}
+.login-classic-with-photo .login-card .primary{background:#134b9c;border-radius:11px}
+.login-classic-with-photo .login-card .primary:hover{background:#0e3a7d}
+.login-classic-with-photo .institutional-footer-login{
+ position:relative!important;inset:auto!important;display:block;
+ width:100%!important;max-width:none!important;margin:0!important;
+ border:0!important;border-top:1px solid #dbe3ef!important;
+ border-radius:0!important;padding:16px clamp(12px,3vw,48px) 11px!important;
+ background:white;
+}
+.institutional-footer-login .institutional-logos{justify-content:center;max-width:1150px;margin:0 auto;gap:clamp(16px,3vw,48px)}
+/* A marca da Fábrica é mais destacada, sem ampliar desproporcionalmente as demais. */
+.institution-logo:first-child{flex:1.22;max-width:320px}
+.institution-logo:first-child img{max-width:min(100%,270px);max-height:90px}
+.institutional-footer-login .institution-logo:first-child img{max-height:82px;max-width:min(100%,260px)}
+.institution-logo:not(:first-child) img{max-height:60px}
+.login-classic-with-photo .institution-logo>span:last-child{font-size:10px}
+@media(max-width:900px){
+ .login-classic-content{grid-template-columns:1fr}
+ .login-classic-with-photo .login-info{min-height:380px;padding:34px;gap:24px}
+ .login-form-pane{padding:40px 18px}
+ .login-classic-with-photo .login-info h1{font-size:34px}
+}
+@media(max-width:540px){
+ .login-classic-with-photo .login-info{min-height:390px;padding:25px}
+ .login-classic-with-photo .login-info .brand{font-size:23px}
+ .login-classic-with-photo .institutional-footer-login{padding:16px 8px 10px!important}
+ .institutional-footer-login .institutional-logos{gap:6px;flex-wrap:nowrap}
+ .institutional-footer-login .institution-logo{min-width:0;max-width:none;flex:1;padding:0 3px}
+ .institutional-footer-login .institution-logo:first-child{flex:1.35}
+ .institutional-footer-login .institution-logo img{max-width:100%;max-height:45px}
+ .institutional-footer-login .institution-logo:first-child img{max-height:58px;max-width:100%}
+ .institutional-footer-login .institution-logo>span:last-child{font-size:8px;line-height:1.2}
+}
+
+
+/* Etapa 5.3: menu lateral independente da altura de listagens e formulários. */
+@media (min-width: 721px) {
+  .shell {display:block; min-height:100vh;}
+  .shell > .sidebar {
+    position:fixed; top:0; left:0; bottom:0; z-index:30;
+    width:252px; height:100vh; height:100dvh;
+    display:flex; flex-direction:column; overflow:hidden;
+  }
+  .shell > .sidebar nav {
+    flex:1 1 auto; min-height:0; overflow-y:auto; overflow-x:hidden;
+    overscroll-behavior:contain; scrollbar-width:thin;
+    scrollbar-color:rgba(255,255,255,.30) transparent;
+  }
+  .shell > .sidebar .brand {flex:0 0 auto;}
+  .shell > .sidebar .sidebar-bottom {flex:0 0 auto; margin-top:12px;}
+  .shell > .main {
+    margin-left:252px; width:calc(100% - 252px); max-width:none;
+    min-width:0; min-height:100vh;
+  }
+}
+/* Em dispositivos menores, o menu mantém o comportamento responsivo. */
+@media (max-width:720px) {
+  .shell > .sidebar {position:relative; top:auto; left:auto; bottom:auto;
+    width:100%; height:auto; overflow:visible;}
+  .shell > .sidebar nav {overflow-x:auto; overflow-y:hidden;}
+  .shell > .main {margin-left:0; width:100%;}
+}
+
+
+/* Etapa 5.4: rodapé interno menor e ancorado ao final da página */
+@media (min-width: 721px) {
+  .shell > .main {
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+  }
+}
+.shell > .main > .institutional-footer{
+  margin-top:auto;
+  width:100%;
+  padding:12px 10px 8px;
+  background:rgba(255,255,255,.92);
+  border-top:1px solid #dfe6f0;
+  border-radius:18px 18px 0 0;
+}
+.shell > .main > .institutional-footer .institutional-logos{
+  gap:16px;
+  max-width:980px;
+  margin:0 auto;
+}
+.shell > .main > .institutional-footer .institution-logo{
+  min-width:120px;
+  max-width:190px;
+  padding:0 8px;
+  gap:5px;
+}
+.shell > .main > .institutional-footer .institution-logo:not(:last-child)::after{
+  right:-8px;
+  top:8px;
+  bottom:8px;
+}
+.shell > .main > .institutional-footer .institution-logo img{
+  max-width:150px;
+  max-height:40px;
+}
+.shell > .main > .institutional-footer .institution-logo.compact img{
+  max-height:42px;
+}
+.shell > .main > .institutional-footer .institution-logo:first-child{
+  flex:1.15;
+  max-width:220px;
+}
+.shell > .main > .institutional-footer .institution-logo:first-child img{
+  max-width:170px;
+  max-height:48px;
+}
+.shell > .main > .institutional-footer .institution-logo > span:last-child{
+  font-size:9px;
+  line-height:1.25;
+}
+.shell > .main > .institutional-footer .institutional-footnote{
+  margin-top:8px;
+  font-size:9px;
+}
+@media (max-width: 720px){
+  .shell > .main > .institutional-footer{
+    border-radius:14px 14px 0 0;
+    padding:10px 8px 7px;
+  }
+  .shell > .main > .institutional-footer .institutional-logos{
+    gap:8px;
+  }
+  .shell > .main > .institutional-footer .institution-logo{
+    min-width:95px;
+    max-width:135px;
+    padding:0 4px;
+  }
+  .shell > .main > .institutional-footer .institution-logo:not(:last-child)::after{
+    display:none;
+  }
+  .shell > .main > .institutional-footer .institution-logo img{
+    max-width:110px;
+    max-height:30px;
+  }
+  .shell > .main > .institutional-footer .institution-logo:first-child img{
+    max-width:125px;
+    max-height:36px;
+  }
+}
+
+/* Etapa 5.5 — menu compacto e respiro no carômetro */
+@media (min-width: 721px) {
+  /* O nav continua com rolagem própria, mas não distribui as linhas pela altura. */
+  .shell > .sidebar nav {
+    display: grid;
+    align-content: start;
+    grid-auto-rows: max-content;
+    row-gap: 3px;
+    justify-items: stretch;
+  }
+  .shell > .sidebar nav > .nav {
+    padding: 11px 14px;
+    min-height: 42px;
+  }
+}
+/* Afasta o último conjunto de cards do rodapé institucional. */
+.shell > .main > .faces {
+  margin-bottom: 44px;
+}
+@media (max-width: 720px) {
+  .shell > .main > .faces {margin-bottom: 28px;}
+}

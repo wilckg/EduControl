@@ -1,6 +1,6 @@
 import React,{useCallback,useEffect,useState} from 'react';
 import{createRoot}from'react-dom/client';
-import{LayoutDashboard,GraduationCap,UsersRound,ClipboardCheck,Contact,MessageSquareWarning,ArrowLeftRight,BellRing,LogOut,BookOpen,Plus,ShieldCheck,RefreshCw,CalendarDays,Search,Clock3,UserCog,FilePlus2,FileSpreadsheet}from'lucide-react';
+import{LayoutDashboard,GraduationCap,UsersRound,ClipboardCheck,Contact,MessageSquareWarning,ArrowLeftRight,BellRing,LogOut,BookOpen,Plus,ShieldCheck,RefreshCw,CalendarDays,Search,Clock3,UserCog,FilePlus2,FileSpreadsheet,History}from'lucide-react';
 
 
 export type Obj=Record<string,any>;
@@ -29,7 +29,7 @@ export function StudentIdentity({student}:{student:Obj}){
 }
 
 export const roles:Record<string,string>={admin:'Administrador',coordenador:'Coordenação',professor:'Professor',secretaria:'Secretaria'};
-export const menu=[['dashboard','Dashboard',LayoutDashboard],['courses','Cursos',BookOpen],['classes','Turmas',GraduationCap],['students','Alunos',UsersRound],['attendance','Chamadas',ClipboardCheck],['carometro','Carômetro',Contact],['occurrences','Ocorrências',MessageSquareWarning],['transfers','Transferências',ArrowLeftRight],['alerts','Alertas',BellRing],['reports','Relatórios',FileSpreadsheet],['users','Usuários',UserCog]] as const;
+export const menu=[['dashboard','Dashboard',LayoutDashboard],['courses','Cursos',BookOpen],['classes','Turmas',GraduationCap],['students','Alunos',UsersRound],['attendance','Chamadas',ClipboardCheck],['carometro','Carômetro',Contact],['occurrences','Ocorrências',MessageSquareWarning],['transfers','Transferências',ArrowLeftRight],['alerts','Alertas',BellRing],['reports','Relatórios',FileSpreadsheet],['users','Usuários',UserCog],['audit','Auditoria',History]] as const;
 export const can=(role:string,allowed:string[])=>allowed.includes(role);
 // Definição central de visibilidade: a API ainda faz a autorização de verdade.
 export const pageRoles:Record<string,string[]>={
@@ -43,7 +43,8 @@ export const pageRoles:Record<string,string[]>={
  transfers:['admin','coordenador','secretaria'],
  alerts:['admin','coordenador','secretaria'],
  reports:['admin','coordenador','secretaria'],
- users:['admin']
+ users:['admin'],
+ audit:['admin']
 };
 export const permitted=(role:string,page:string)=>pageRoles[page]?.includes(role)??false;
 export const dateBR=(v:string)=>v?new Date(v+'T12:00:00').toLocaleDateString('pt-BR'):'—';
